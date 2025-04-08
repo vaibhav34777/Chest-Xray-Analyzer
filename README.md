@@ -1,2 +1,8 @@
-# Chest-Xray-Analyzer
-A deep learning application that uses a fine-tuned ResNet-50 to detect multiple diseases from chest X-ray images."
+## Model Weights
+
+The pretrained model weights are hosted externally due to file size limitations on GitHub.
+
+📥 [Download odel.pt from Google Drive](https://drive.google.com/uc?id=YOUR_FILE_ID&export=download)
+
+Once downloaded use the file for loading weights in the model
+
