@@ -118,7 +118,7 @@ class ResNet50(nn.Module):
         return x
 
 model= ResNet50(num_classes=14)
-model.load_state_dict(torch.load("best_model (1).pt", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("model.pt", map_location=torch.device('cpu')))
 optimal_thresholds = torch.tensor([0.18181818, 0.52525253, 0.1010101 , 0.06060606, 0.3030303 ,
        0.12121212, 0.1010101 , 0.3       , 0.16161616, 0.19191919,
        0.13131313, 0.11111111, 0.03030303, 0.14141414])
