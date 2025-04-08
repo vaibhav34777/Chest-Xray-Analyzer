@@ -40,7 +40,14 @@ The preprocessing steps include:
 - The model was trained using the `BCEWithLogitsLoss` loss function since the final layer outputs raw logits suitable for multi-label classification.
 - A low learning rate of `1e-5` was used to avoid disrupting the pretrained weights significantly.
 - A learning rate scheduler was implemented to reduce the learning rate when the validation loss plateaued.
-- The model was trained for 5 epochs, reaching a validation loss of 0.15, a training loss of 0.12, and an overall accuracy of 94.7%.
+
+### Training Performance
+
+- ✅ **Training Loss**: 0.12
+- ✅ **Validation Loss**: 0.15
+- ✅ **Accuracy**: 94.7%
+- ✅ **Learning Curve**: Smooth training observed with gradual convergence.
+- 📈 The learning curve is available at `output/learning_curve.png`
 
 ## Threshold Optimization
 
@@ -60,6 +67,8 @@ The preprocessing steps include:
 
 📌 **Kaggle Notebook Link:** https://www.kaggle.com/code/vaibhav1908/chestxrayanalysis
 
+🎥 A demonstration of the model is available as a Streamlit app. The video link is located in `output/README.md`.
+
 ## Future Improvements
 
 - Apply data augmentation techniques such as rotation, flipping, and contrast adjustment to improve model generalization.
@@ -75,4 +84,3 @@ The preprocessing steps include:
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
-
