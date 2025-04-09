@@ -10,6 +10,15 @@ import numpy as np
 from PIL import Image
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
+import gdown
+def download_model():
+    model_path = "model/model.pth"
+    if not os.path.exists(model_path):
+        url = "https://drive.google.com/file/d/1NXM3kK-PhuWCb7izFAeLGpX6um6T7qN6/view?usp=drive_link" 
+        os.makedirs("model", exist_ok=True)
+        gdown.download(url, model_path, quiet=False)
+    return model_path
+
 device = 'cpu'
 if torch.cuda.is_available():
     device='cuda'
@@ -117,8 +126,8 @@ class ResNet50(nn.Module):
         x = self.fc(x)
         return x
 
-model= ResNet50(num_classes=14)
-model.load_state_dict(torch.load("model.pt", map_location=torch.device('cpu')))
+model_path = download_model()
+model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 optimal_thresholds = torch.tensor([0.18181818, 0.52525253, 0.1010101 , 0.06060606, 0.3030303 ,
        0.12121212, 0.1010101 , 0.3       , 0.16161616, 0.19191919,
        0.13131313, 0.11111111, 0.03030303, 0.14141414])
