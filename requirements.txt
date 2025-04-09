@@ -8,3 +8,4 @@ Pillow
 matplotlib
 streamlit
 gdown
+requests
