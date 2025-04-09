@@ -14,10 +14,11 @@ import gdown
 def download_model():
     model_path = "model/model.pth"
     if not os.path.exists(model_path):
-        file_id = "1NXM3kK-PhuWCb7izFAeLGpX6um6T7qN6"
-        url = f"https://drive.google.com/uc?id={file_id}"
         os.makedirs("model", exist_ok=True)
-        gdown.download(url, model_path, quiet=False)
+        url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt"
+        response = requests.get(url)
+        with open(model_path, "wb") as f:
+            f.write(response.content)
     return model_path
 
 device = 'cpu'
