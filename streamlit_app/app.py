@@ -14,7 +14,8 @@ import gdown
 def download_model():
     model_path = "model/model.pth"
     if not os.path.exists(model_path):
-        url = "https://drive.google.com/file/d/1NXM3kK-PhuWCb7izFAeLGpX6um6T7qN6/view?usp=drive_link" 
+        file_id = "1NXM3kK-PhuWCb7izFAeLGpX6um6T7qN6"
+        url = f"https://drive.google.com/uc?id={file_id}"
         os.makedirs("model", exist_ok=True)
         gdown.download(url, model_path, quiet=False)
     return model_path
@@ -127,6 +128,7 @@ class ResNet50(nn.Module):
         return x
 
 model_path = download_model()
+model = ResNet50(num_classes=14).to(device)
 model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 optimal_thresholds = torch.tensor([0.18181818, 0.52525253, 0.1010101 , 0.06060606, 0.3030303 ,
        0.12121212, 0.1010101 , 0.3       , 0.16161616, 0.19191919,
