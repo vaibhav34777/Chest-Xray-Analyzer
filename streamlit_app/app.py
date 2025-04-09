@@ -146,21 +146,23 @@ def inference(img,transform,device):
 
 st.set_page_config(page_title="Chest X-ray Disease Analyzer", layout="centered")
 st.title("🩺 Chest X-ray Disease Analyzer")
-st.markdown("Upload a chest X-ray image and get predicted diseases by the model")
-
-uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
-
+st.markdown("Upload a chest X-ray image and click **Predict** to analyze potential thoracic diseases.")
+uploaded_file = st.file_uploader("Upload a chest X-ray image", type=["png", "jpg", "jpeg"])
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Uploaded Image", width=300, use_container_width=False)
 
-    with st.spinner("Predicting..."):
-        predicted_diseases = inference(image, transform, device)
+    if st.button("🔍 Predict"):
+        with st.spinner("Analyzing image..."):
+            predicted_diseases = inference(image, transform, device)
 
-    st.subheader("Predicted Disease(s):")
+        st.subheader("Predicted Disease(s):")
 
-    if not predicted_diseases:
-        st.markdown("<h2 style='font-size:24px'>✅ No Finding</h2>", unsafe_allow_html=True)
-    else:
-        for disease in predicted_diseases:
-            st.markdown(f"<h2 style='font-size:24px'>- <strong>{disease}</strong></h2>", unsafe_allow_html=True)
+        if not predicted_diseases:
+            st.markdown("<h2 style='font-size:24px'>✅ No Finding</h2>", unsafe_allow_html=True)
+        else:
+            for disease in predicted_diseases:
+                st.markdown(f"<h2 style='font-size:24px'>- <strong>{disease}</strong></h2>", unsafe_allow_html=True)
+
+
+
