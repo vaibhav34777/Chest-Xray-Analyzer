@@ -5,8 +5,6 @@ scikit-learn
 pandas
 tqdm
 Pillow
-glob
-os
 matplotlib
 streamlit
 gdown
