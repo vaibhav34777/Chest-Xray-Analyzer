@@ -16,12 +16,11 @@ def download_model():
     model_path = "model/model.pth"
     if not os.path.exists(model_path):
         os.makedirs("model", exist_ok=True)
-        url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt"
+        url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pth"
         response = requests.get(url)
         with open(model_path, "wb") as f:
             f.write(response.content)
     return model_path
-
 device = 'cpu'
 if torch.cuda.is_available():
     device='cuda'
@@ -131,7 +130,9 @@ class ResNet50(nn.Module):
 
 model_path = download_model()
 model = ResNet50(num_classes=14).to(device)
-model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+state_dict = torch.load(model_path, map_location=torch.device('cpu'))
+model.load_state_dict(state_dict)
+model.eval()
 optimal_thresholds = torch.tensor([0.18181818, 0.52525253, 0.1010101 , 0.06060606, 0.3030303 ,
        0.12121212, 0.1010101 , 0.3       , 0.16161616, 0.19191919,
        0.13131313, 0.11111111, 0.03030303, 0.14141414])
