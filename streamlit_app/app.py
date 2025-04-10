@@ -16,19 +16,14 @@ def download_model():
     model_path = "model/model.pth"
     url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model/model.pt"
 
-    if not os.path.exists(model_path) or os.path.getsize(model_path) < 1_000_000:
+    if not os.path.exists(model_path):
         os.makedirs("model", exist_ok=True)
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
-        response = requests.get(url, headers=headers)
-
-        if not response.ok or response.content.startswith(b"<"):
-            raise RuntimeError("❌ Model download failed. Hugging Face URL returned an HTML page (403/404?)")
-
+        response = requests.get(url, headers=headers
         with open(model_path, "wb") as f:
             f.write(response.content)
-
     return model_path
 
 device = 'cpu'
