@@ -14,12 +14,19 @@ from sklearn.model_selection import train_test_split
 import gdown
 def download_model():
     model_path = "model/model.pth"
-    if not os.path.exists(model_path):
+    url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt?download=true"
+
+    if not os.path.exists(model_path) or os.path.getsize(model_path) < 1_000_000:
         os.makedirs("model", exist_ok=True)
-        url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt?download=true"
         response = requests.get(url)
+
+        # Check if we accidentally got an HTML page
+        if not response.ok or response.content.startswith(b"<"):
+            raise RuntimeError("❌ Model download failed. Hugging Face URL returned an HTML page (403/404?)")
+
         with open(model_path, "wb") as f:
             f.write(response.content)
+
     return model_path
 device = 'cpu'
 if torch.cuda.is_available():
