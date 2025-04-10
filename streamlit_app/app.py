@@ -16,7 +16,7 @@ def download_model():
     model_path = "model/model.pth"
     if not os.path.exists(model_path):
         os.makedirs("model", exist_ok=True)
-        url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt?download=true
+        url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt?download=true"
 "
         response = requests.get(url)
         with open(model_path, "wb") as f:
