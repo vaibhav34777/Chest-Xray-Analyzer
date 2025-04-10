@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 import gdown
 def download_model():
     model_path = "model/model.pth"
-    url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt?download=true"
+    url = "https://huggingface.co/imvaibhavrana/chest-xray-analyzer/resolve/main/model.pt"
 
     if not os.path.exists(model_path) or os.path.getsize(model_path) < 1_000_000:
         os.makedirs("model", exist_ok=True)
