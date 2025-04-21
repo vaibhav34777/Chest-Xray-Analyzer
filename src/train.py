@@ -18,6 +18,7 @@ csv_path = "/kaggle/input/data/Data_Entry_2017.csv"
 df = pd.read_csv(csv_path)
 
 
+
 # Train and validation dataset and dataloader
 train_df,val_df=train_test_split(df,test_size=0.01,random_state=43)
 data_folder = "/kaggle/input/data"       # This is a the path to the kaggle dataset i used for training
