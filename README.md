@@ -1,4 +1,6 @@
 # Chest X-ray Disease Analyzer
+![Alt text](demo_image.png)
+
 
 A deep learning-based multi-label classification model for detecting thoracic diseases from chest X-ray images using a fine-tuned ResNet-50 architecture.
 
